@@ -1,53 +1,35 @@
 package main
 
-// "time"
-import (
-	"fmt"
-	"os"
-	"os/exec"
-)
+import "fmt"
 
-const a = 30
-const b = 30
+//import "time"
 
-var arr [a][b]string
+var gameOver bool
 
-func mapp() {
-	for i := 0; i < b; i++ {
-		arr[0][i] = "#"
-	}
-	for i := 1; i < a-1; i++ {
-		for j := 0; j < b; j++ {
-			if j == 0 || j == b-1 {
-				arr[i][j] = "#"
-			} else {
-				arr[i][j] = " "
-			}
-		}
-	}
-	for i := 0; i < b; i++ {
-		arr[a-1][i] = "#"
-	}
-}
+var ycor int = 15
+var xcor int = 15
+var arr [30][30]string
 
-func vivod() {
-	for i := 0; i < a; i++ {
-		cmd := exec.Command("clear")
-		cmd.Stdout = os.Stdout
-		cmd.Run()
-		for j := 0; j < b; j++ {
-			fmt.Printf(arr[i][j])
-		}
-		fmt.Println(" ")
-
-	}
-}
+// tail_y := make([]int, 1)
+// tail_x := make([]int, 1)
+// tail_cor_y := make([]int, 1)
+// tail_cor_x := make([]int, 1)
+// var nap string
 
 func main() {
-	mapp()
-	for true {
-		vivod()
-		//		time.Sleep(50 * time.Millisecond)
+	gameOver = false
+	//	mapp()
+	arr[ycor][xcor] = "O"
+	fmt.Println(arr[ycor][xcor])
+	fmt.Println("chose level of complexity (10 to 1): ")
+	var hard int
+	fmt.Scanf("%f", &hard)
+	hard = hard * 10
+	for !gameOver {
+		// random_fruit()
+		// vivod()
+		// shake_move()
+		// hvost_move()
+		//time.Sleep(time.Millisecond * hard) // тайм.слип не принимает хард,но принимает константы
 	}
-
 }
