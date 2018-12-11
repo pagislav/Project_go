@@ -1,35 +1,87 @@
 package main
 
-import "fmt"
+// 0.1 "бублик", нет хвоста,нет еды,нет kbhit() и  getch(), хоть что-то
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"os/exec"
+	"time"
+)
 
-//import "time"
+const a = 30
 
-var gameOver bool
-
-var ycor int = 15
+var dir string
 var xcor int = 15
-var arr [30][30]string
+var ycor int = 15
 
-// tail_y := make([]int, 1)
-// tail_x := make([]int, 1)
-// tail_cor_y := make([]int, 1)
-// tail_cor_x := make([]int, 1)
-// var nap string
+func vivod() {
+	//cmd := exec.Command("cmd", "/c", "cls") // for windows
+	cmd := exec.Command("clear") // for Linux and MacOS
+	cmd.Stdout = os.Stdout
+	cmd.Run()
+
+	for i := 0; i < a; i++ {
+		fmt.Print("#")
+	}
+	fmt.Println(" ")
+	for i := 1; i < a-1; i++ {
+		fmt.Print("#")
+		for j := 1; j < a-1; j++ {
+			if i == ycor && j == xcor {
+				fmt.Print("0")
+			} else {
+				fmt.Print(" ")
+			}
+
+		}
+		fmt.Println("#")
+	}
+	for i := 0; i < a; i++ {
+		fmt.Print("#")
+	}
+	time.Sleep(time.Millisecond * 10 * 10)
+}
+
+func vvod() {
+	r := bufio.NewReader(os.Stdin)
+	c, err := r.ReadByte()
+	if err != nil {
+		panic(err)
+	}
+	dir = string(c)
+	switch dir {
+	case "w":
+		ycor -= 1
+	case "s":
+		ycor += 1
+	case "a":
+		xcor -= 1
+	case "d":
+		xcor += 1
+	}
+	if xcor == 29 {
+		xcor = 1
+	} else if xcor == 0 {
+		xcor = 28
+	}
+	if ycor == 29 {
+		ycor = 1
+	} else if ycor == 0 {
+		ycor = 28
+	}
+}
+func move() {
+
+}
 
 func main() {
-	gameOver = false
-	//	mapp()
-	arr[ycor][xcor] = "O"
-	fmt.Println(arr[ycor][xcor])
-	fmt.Println("chose level of complexity (10 to 1): ")
-	var hard int
-	fmt.Scanf("%f", &hard)
-	hard = hard * 10
+	gameOver := false
+
 	for !gameOver {
-		// random_fruit()
-		// vivod()
-		// shake_move()
-		// hvost_move()
-		//time.Sleep(time.Millisecond * hard) // тайм.слип не принимает хард,но принимает константы
+		vvod()
+		vivod()
+		move()
 	}
+
 }
