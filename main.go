@@ -1,5 +1,6 @@
 package main
 
+// use in code Cyrilic symbol the fuckuing death way
 // 0.1 "бублик", нет хвоста,нет еды,нет kbhit() и  getch(), хоть что-то
 import (
 	"bufio"
@@ -17,7 +18,9 @@ var ycor int = 15
 
 func vivod() {
 	//cmd := exec.Command("cmd", "/c", "cls") // for windows
-	cmd := exec.Command("clear") // for Linux and MacOS
+	
+	// for Linux and MacOS
+	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout
 	cmd.Run()
 
